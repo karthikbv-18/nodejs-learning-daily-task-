@@ -1,0 +1,779 @@
+JavaScript Fundamentals — Completed Topics
+1. Variables — var, let, const
+Variables store data.
+let name = "Karthik";
+const age = 23;
+var city = "Bengaluru";
+
+let
+Can be changed:
+let age = 23;
+age = 24;
+
+const
+Cannot be reassigned:
+const name = "Karthik";
+name = "Rahul"; // ❌ Error
+
+var
+Older way of declaring variables. In modern JavaScript, prefer let and const.
+Remember:
+let   → can change
+const → cannot reassign
+var   → old style
+
+2. Data Types
+JavaScript has different types of data.
+String
+const name = "Karthik";
+
+Text.
+Number
+const age = 23;
+const price = 99.50;
+
+Numbers.
+Boolean
+const isActive = true;
+
+Only:
+true
+false
+
+Undefined
+let result;
+console.log(result);
+
+Output:
+undefined
+
+A variable exists but has no value assigned.
+Null
+const user = null;
+
+Means intentionally no value.
+Array
+const numbers = [10, 20, 30];
+
+Collection of values.
+Object
+const user = {
+    name: "Karthik",
+    age: 23
+};
+
+Collection of key-value pairs.
+3. Operators
+Operators perform operations.
+Arithmetic
+const a = 10;
+const b = 3;
+
+a + b; // 13
+a - b; // 7
+a * b; // 30
+a / b; // 3.33
+a % b; // 1
+
+Assignment
+let age = 23;
+
+age = 24;
+age += 1;
+age -= 1;
+
+Comparison
+10 > 5;   // true
+10 < 5;   // false
+10 === 10; // true
+10 !== 5;  // true
+
+Logical
+&&  // AND
+||  // OR
+!   // NOT
+
+Example:
+if (age > 18 && isActive) {
+    console.log("Allowed");
+}
+
+4. Conditional Statements
+Used to make decisions.
+if
+const age = 23;
+
+if (age >= 18) {
+    console.log("Adult");
+}
+
+if / else
+if (age >= 18) {
+    console.log("Adult");
+} else {
+    console.log("Minor");
+}
+
+else if
+if (age >= 18) {
+    console.log("Adult");
+} else if (age >= 13) {
+    console.log("Teenager");
+} else {
+    console.log("Child");
+}
+
+switch
+const role = "admin";
+
+switch (role) {
+    case "admin":
+        console.log("Admin user");
+        break;
+
+    case "user":
+        console.log("Normal user");
+        break;
+
+    default:
+        console.log("Unknown role");
+}
+
+5. Loops
+Loops repeat code.
+for
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+}
+
+Output:
+0
+1
+2
+3
+4
+
+while
+let i = 0;
+
+while (i < 5) {
+    console.log(i);
+    i++;
+}
+
+do...while
+Runs at least once.
+let i = 0;
+
+do {
+    console.log(i);
+    i++;
+} while (i < 5);
+
+6. Arrays
+An array stores multiple values.
+const fruits = ["Apple", "Mango", "Banana"];
+
+Access using index:
+console.log(fruits[0]); // Apple
+console.log(fruits[1]); // Mango
+
+Index starts at 0.
+push()
+Adds to the end.
+fruits.push("Orange");
+
+pop()
+Removes the last item.
+fruits.pop();
+
+slice()
+Copies part of an array without changing the original.
+const numbers = [10, 20, 30, 40];
+
+const result = numbers.slice(1, 3);
+
+console.log(result);
+
+Result:
+[20, 30]
+
+splice()
+Can add/remove items from the original array.
+numbers.splice(1, 1);
+
+concat()
+Combines arrays.
+const a = [1, 2];
+const b = [3, 4];
+
+const result = a.concat(b);
+
+Result:
+[1, 2, 3, 4]
+
+7. Array Methods
+These are very important for backend development.
+forEach()
+Used when you want to do something for each item.
+const users = ["Karthik", "Rahul", "Sahana"];
+
+users.forEach(user => {
+    console.log(user);
+});
+
+Think:
+forEach → DO something
+
+map()
+Used to create a new array by changing/transforming each item.
+const numbers = [1, 2, 3];
+
+const doubled = numbers.map(number => number * 2);
+
+console.log(doubled);
+
+Result:
+[2, 4, 6]
+
+Think:
+map → CHANGE
+
+filter()
+Selects multiple items that satisfy a condition.
+const users = [
+    { name: "Karthik", isActive: true },
+    { name: "Rahul", isActive: false },
+    { name: "Sahana", isActive: true }
+];
+
+const activeUsers = users.filter(user => user.isActive);
+
+Result:
+Karthik
+Sahana
+
+Think:
+filter → SELECT MANY
+
+find()
+Finds the first matching item.
+const users = [
+    { id: 1, name: "Karthik" },
+    { id: 2, name: "Rahul" }
+];
+
+const user = users.find(user => user.id === 2);
+
+Result:
+{ id: 2, name: "Rahul" }
+
+Think:
+find → SELECT ONE
+
+Memory trick
+forEach → DO
+map     → CHANGE
+filter  → SELECT MANY
+find    → SELECT ONE
+
+8. Objects
+Objects store information using key-value pairs.
+const user = {
+    name: "Karthik",
+    age: 23,
+    city: "Bengaluru"
+};
+
+Access:
+console.log(user.name);
+console.log(user.age);
+
+You can also use:
+console.log(user["name"]);
+
+Change property
+user.age = 24;
+
+Add property
+user.email = "test@example.com";
+
+Delete property
+delete user.email;
+
+9. Object Methods
+A function inside an object is called a method.
+const user = {
+    name: "Karthik",
+
+    greet: function() {
+        console.log("Hello");
+    }
+};
+
+user.greet();
+
+10. this Keyword
+this refers to the current object when using a normal object method.
+const user = {
+    name: "Karthik",
+
+    greet: function() {
+        console.log(this.name);
+    }
+};
+
+user.greet();
+
+Output:
+Karthik
+
+Here:
+this.name
+
+means:
+user.name
+
+In NestJS you'll often see:
+this.userRepository
+this.userService
+this.configService
+
+Think:
+this → the current object/class instance.
+
+11. Object.keys()
+Gets the object's keys.
+const user = {
+    name: "Karthik",
+    age: 23
+};
+
+console.log(Object.keys(user));
+
+Result:
+["name", "age"]
+
+12. Object.values()
+Gets the values.
+console.log(Object.values(user));
+
+Result:
+["Karthik", 23]
+
+13. Object.entries()
+Gets key-value pairs.
+console.log(Object.entries(user));
+
+Result:
+[
+    ["name", "Karthik"],
+    ["age", 23]
+]
+
+14. Destructuring
+Destructuring means taking values out of an object or array into variables.
+Object
+const user = {
+    name: "Karthik",
+    age: 23
+};
+
+const { name, age } = user;
+
+Now:
+console.log(name); // Karthik
+console.log(age);  // 23
+
+Instead of:
+const name = user.name;
+const age = user.age;
+
+Array destructuring
+const numbers = [10, 20, 30];
+
+const [a, b, c] = numbers;
+
+Now:
+a = 10
+b = 20
+c = 30
+
+Remember:
+Destructuring → take values out
+
+15. Spread Operator ...
+Spread means spread/copy values out.
+Array
+const numbers = [1, 2, 3];
+
+const newNumbers = [...numbers, 4, 5];
+
+Result:
+[1, 2, 3, 4, 5]
+
+Object
+const user = {
+    name: "Karthik",
+    age: 23
+};
+
+const newUser = {
+    ...user,
+    city: "Bengaluru"
+};
+
+Result:
+{
+    name: "Karthik",
+    age: 23,
+    city: "Bengaluru"
+}
+
+Remember:
+Spread → spread/copy values OUT
+
+16. Rest Operator ...
+Rest collects remaining values into one variable.
+function add(...numbers) {
+    console.log(numbers);
+}
+
+add(10, 20, 30, 40);
+
+numbers becomes:
+[10, 20, 30, 40]
+
+Remember:
+Rest → collect values IN
+
+Easy trick:
+Spread → OUT
+Rest   → IN
+
+17. Template Literals
+Template literals make it easy to put variables inside strings.
+Use backticks:
+const name = "Karthik";
+const age = 23;
+
+console.log(`My name is ${name} and I am ${age} years old.`);
+
+Output:
+My name is Karthik and I am 23 years old.
+
+Instead of:
+"My name is " + name + " and I am " + age
+
+Remember:
+`text ${variable}`
+
+18. Arrow Functions
+Normal function:
+function add(a, b) {
+    return a + b;
+}
+
+Arrow function:
+const add = (a, b) => {
+    return a + b;
+};
+
+Short version:
+const add = (a, b) => a + b;
+
+You'll see arrow functions constantly with:
+map()
+filter()
+find()
+forEach()
+
+Example:
+const numbers = [1, 2, 3];
+
+const doubled = numbers.map(number => number * 2);
+
+19. Functions
+A function is a reusable block of code.
+function greet() {
+    console.log("Hello");
+}
+
+greet();
+
+Parameters
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+greet("Karthik");
+
+Here name is a parameter.
+Return
+function add(a, b) {
+    return a + b;
+}
+
+const result = add(10, 20);
+
+console.log(result);
+
+Result:
+30
+
+Remember:
+console.log() → displays something
+return        → sends a value back
+
+20. Scope
+Scope means where a variable can be accessed.
+Global scope
+const x = 10;
+
+function test() {
+    console.log(x);
+}
+
+test();
+
+console.log(x);
+
+Both can access x.
+Local scope
+function test() {
+    const y = 20;
+
+    console.log(y);
+}
+
+test();
+
+console.log(y); // ❌ Error
+
+y only exists inside test().
+Remember:
+Global → accessible from wider scope
+
+Local → accessible only inside its scope
+
+21. Callbacks
+A callback is:
+A function passed to another function so that the other function can call it.
+
+Example:
+function greet(name) {
+    console.log("Hello " + name);
+}
+
+function processUser(callback) {
+    callback("Karthik");
+}
+
+processUser(greet);
+
+Here:
+greet
+ ↓
+passed to processUser
+ ↓
+callback
+ ↓
+callback("Karthik")
+ ↓
+greet("Karthik")
+
+Important:
+processUser(greet);
+
+means pass the function.
+While:
+greet("Karthik");
+
+means call the function.
+22. Asynchronous JavaScript
+Some operations take time.
+For example:
+setTimeout(() => {
+    console.log("Hello");
+}, 2000);
+
+2000 means:
+2000 milliseconds = 2 seconds
+
+Example:
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Middle");
+}, 2000);
+
+console.log("End");
+
+Output:
+Start
+End
+Middle
+
+Why?
+Start
+ ↓
+schedule callback
+ ↓
+continue
+ ↓
+End
+ ↓
+2 seconds later
+ ↓
+Middle
+
+23. Promises
+A Promise represents a result that will be available later.
+Think:
+Promise
+   ↓
+"I don't have the result yet.
+ I'll give it to you later."
+
+A Promise has three states:
+Pending
+   ↓
+Fulfilled ✅
+
+or:
+Pending
+   ↓
+Rejected ❌
+
+Example:
+const promise = new Promise((resolve, reject) => {
+    resolve("Data received");
+});
+
+resolve() means:
+Success.
+
+reject() means:
+Failure.
+
+24. .then() and .catch()
+.then() handles success.
+promise.then((result) => {
+    console.log(result);
+});
+
+.catch() handles failure.
+promise.catch((error) => {
+    console.log(error);
+});
+
+Together:
+promise
+    .then((result) => {
+        console.log(result);
+    })
+    .catch((error) => {
+        console.log(error);
+    });
+
+Remember:
+resolve → .then()
+reject  → .catch()
+
+25. async
+async is used on a function that works with asynchronous operations and allows await inside it.
+async function getData() {
+
+}
+
+Think:
+async → this function can use await.
+
+26. await
+await means:
+Wait for the asynchronous operation to finish and give me its result.
+
+Example:
+async function getUserData() {
+    const user = await getUser();
+
+    console.log(user);
+}
+
+Read this:
+const user = await getUser();
+
+as:
+Call getUser(), wait for its result, then put the result into user.
+
+Simple memory:
+Promise → result will come later
+
+await   → wait for that result
+
+async   → allows await inside the function
+
+
+Your JavaScript Mental Map
+Save this part especially:
+
+JAVASCRIPT
+│
+├── Variables
+│   ├── let
+│   ├── const
+│   └── var
+│
+├── Data Types
+│   ├── string
+│   ├── number
+│   ├── boolean
+│   ├── array
+│   ├── object
+│   ├── null
+│   └── undefined
+│
+├── Logic
+│   ├── if / else
+│   ├── switch
+│   └── loops
+│
+├── Arrays
+│   ├── push
+│   ├── pop
+│   ├── slice
+│   ├── splice
+│   ├── concat
+│   ├── map
+│   ├── filter
+│   ├── find
+│   └── forEach
+│
+├── Objects
+│   ├── properties
+│   ├── methods
+│   ├── this
+│   ├── Object.keys
+│   ├── Object.values
+│   └── Object.entries
+│
+├── Modern JavaScript
+│   ├── destructuring
+│   ├── spread
+│   ├── rest
+│   ├── template literals
+│   └── arrow functions
+│
+├── Functions
+│   ├── parameters
+│   ├── return
+│   ├── scope
+│   └── callbacks
+│
+└── Asynchronous JavaScript
+    ├── setTimeout
+    ├── Promise
+    ├── then
+    ├── catch
+    ├── async
+    └── await
