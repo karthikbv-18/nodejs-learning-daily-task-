@@ -1,0 +1,418 @@
+
+Error Handling → Node.js → Modules → npm → HTTP/API → NestJS
+1. Error Handling
+Error handling is used to handle errors without unexpectedly stopping the application.
+try
+Put code that may cause an error inside try.
+try {
+    console.log(name);
+}
+
+catch
+If an error occurs in try, catch handles it.
+try {
+    console.log(name);
+} catch (error) {
+    console.log("Something went wrong");
+}
+
+Flow
+try
+ ↓
+Error?
+ ↓
+YES → catch
+
+finally
+finally runs whether an error happens or not.
+try {
+    console.log("Running");
+} catch (error) {
+    console.log("Error");
+} finally {
+    console.log("Always runs");
+}
+
+Memory
+try     → Try the code
+catch   → Handle the error
+finally → Always execute
+
+throw
+throw allows you to create an error yourself.
+function checkAge(age) {
+
+    if (age < 18) {
+        throw new Error("Age must be 18 or above");
+    }
+
+    console.log("Allowed");
+}
+
+Handle it:
+try {
+    checkAge(15);
+} catch (error) {
+    console.log(error.message);
+}
+
+Output:
+Age must be 18 or above
+
+Memory
+throw → create/raise an error
+
+2. Node.js
+Definition
+Node.js is a runtime that allows JavaScript to run outside the browser.
+
+JavaScript:
+Programming language
+
+Node.js:
+Environment/runtime that executes JavaScript
+
+Example:
+app.js
+console.log("Hello Karthik");
+
+Run:
+node app.js
+
+Output:
+Hello Karthik
+
+Why Node.js?
+It allows JavaScript to build backend applications that can work with:
+- APIs
+- Servers
+- Databases
+- Files
+- Networking
+Important
+JavaScript → Language
+Node.js    → Runtime
+NestJS     → Backend framework running on Node.js
+
+3. Node.js Modules
+Definition
+A module is a separate file containing code that can be reused by another file.
+
+For example:
+math.js
+app.js
+
+math.js
+function add(a, b) {
+    return a + b;
+}
+
+module.exports = add;
+
+app.js
+const add = require("./math");
+
+console.log(add(10, 20));
+
+Output:
+30
+
+Flow
+math.js
+   ↓
+export
+   ↓
+app.js
+   ↓
+import
+   ↓
+use function
+
+4. CommonJS
+CommonJS uses:
+module.exports
+
+to export.
+And:
+require()
+
+to import.
+Example:
+// math.js
+module.exports = add;
+
+// app.js
+const add = require("./math");
+
+Memory
+module.exports → send code out
+require()      → bring code in
+
+5. ES Modules
+Modern JavaScript also uses:
+export
+import
+
+Example:
+// math.js
+
+export function add(a, b) {
+    return a + b;
+}
+
+Then:
+// app.js
+
+import { add } from "./math.js";
+
+In your NestJS/TypeScript code, you'll commonly see:
+import { Controller } from "@nestjs/common";
+
+and:
+export class UserController {
+}
+
+6. npm
+Definition
+npm = Node Package Manager.
+
+It is used to install and manage packages for Node.js projects.
+Example:
+npm install express
+
+npm downloads Express and its required dependencies.
+7. node_modules
+After installing packages:
+project/
+│
+├── node_modules/
+├── package.json
+└── package-lock.json
+
+node_modules contains the packages installed for your project.
+8. package.json
+Definition
+package.json is the main configuration/information file of a Node.js project.
+
+Example:
+{
+    "name": "my-project",
+    "version": "1.0.0",
+
+    "scripts": {
+        "start": "node app.js"
+    },
+
+    "dependencies": {
+        "express": "^5.0.0"
+    }
+}
+
+It contains things such as:
+name
+version
+scripts
+dependencies
+
+9. npm Scripts
+Suppose:
+{
+    "scripts": {
+        "start": "node app.js"
+    }
+}
+
+You can run:
+npm run start
+
+npm executes:
+node app.js
+
+In NestJS, you'll commonly see:
+npm run start:dev
+
+which runs the script defined in your project's package.json.
+10. HTTP
+Definition
+HTTP is a protocol used for communication between clients and servers.
+
+Basic flow:
+Client
+   ↓
+HTTP Request
+   ↓
+Server
+   ↓
+HTTP Response
+   ↓
+Client
+
+Example:
+Mobile App
+    ↓
+GET /products
+    ↓
+Backend
+    ↓
+Products
+    ↓
+Mobile App
+
+11. API
+Definition
+An API provides a way for one application to communicate with another application.
+
+Example:
+Mobile App
+    ↓
+GET /products
+    ↓
+Backend API
+    ↓
+Database
+    ↓
+Products
+
+The API is the communication point between the application and backend.
+12. HTTP Methods
+GET
+Used to get data.
+GET /products
+
+POST
+Used to create data.
+POST /products
+
+PATCH
+Used to update data.
+PATCH /products/10
+
+DELETE
+Used to delete data.
+DELETE /products/10
+
+Memory
+GET    → Read
+POST   → Create
+PATCH  → Update
+DELETE → Delete
+
+13. HTTP Request
+A request can contain:
+Request
+├── URL
+├── Method
+├── Headers
+└── Body
+
+Example:
+POST /products
+
+Body:
+{
+    "name": "Rice",
+    "price": 500
+}
+
+Headers can contain information such as:
+Content-Type: application/json
+
+or authentication information.
+14. HTTP Response
+The server sends a response back.
+Response
+├── Status Code
+├── Headers
+└── Body
+
+Example:
+{
+    "id": 1,
+    "name": "Rice",
+    "price": 500
+}
+
+15. HTTP Status Codes
+Important ones:
+200 → Success
+201 → Created
+400 → Bad Request
+401 → Unauthorized
+403 → Forbidden
+404 → Not Found
+500 → Server Error
+
+Example:
+GET /products/999
+        ↓
+Product doesn't exist
+        ↓
+404 Not Found
+
+16. NestJS
+Definition
+NestJS is a framework for building backend applications using Node.js.
+
+Your architecture is basically:
+TypeScript
+    ↓
+Node.js
+    ↓
+NestJS
+    ↓
+SK Mart Backend
+
+17. NestJS Controller
+Definition
+A Controller receives HTTP requests and decides which method should handle them.
+
+Example:
+import { Controller, Get } from "@nestjs/common";
+
+@Controller("products")
+export class ProductController {
+
+    @Get()
+    getProducts() {
+        return ["Rice", "Sugar", "Oil"];
+    }
+}
+
+Now:
+GET /products
+
+calls:
+getProducts()
+
+and returns:
+["Rice", "Sugar", "Oil"]
+
+18. Understanding the Decorators
+@Controller("products")
+
+means:
+This controller handles routes beginning with /products.
+
+And:
+@Get()
+
+means:
+When a GET request comes to this route, execute this method.
+
+So:
+GET /products
+      ↓
+ProductController
+      ↓
+getProducts()
+      ↓
+Response
+
+For POST:
+@Post()
+createProduct() {
+    return "Product created";
+}
+
+This handles:
+POST /products
